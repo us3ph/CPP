@@ -1,13 +1,12 @@
-NAME = megaphone
+NAME = PhoneBook
 
 CC  = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98 
 
 RM = rm -rf
 
-
-SRC = megaphone.cpp
+SRC = main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
