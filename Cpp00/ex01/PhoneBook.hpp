@@ -21,6 +21,5 @@ public:
 };
 
 std::string formatField(const std::string &field);
-
-std::string getlineHelper(std::string str);
+std::string getlineHelper();
 #endif
