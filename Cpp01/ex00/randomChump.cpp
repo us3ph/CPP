@@ -1,4 +1,4 @@
-#include "zombie.hpp"
+#include "Zombie.hpp"
 
 void randomChump(std::string name) // method to creat zombie in the stack
 {
