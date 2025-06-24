@@ -1,11 +1,12 @@
 #include "Zombie.hpp"
 
 int main()
-{
-    Zombie *horde;
-    horde = zombieHorde(5,"Zed");
-
-    for(int i = 0; i < 5; i++)
+{   
+    int n = 5;
+    Zombie *horde = zombieHorde(n,"Zed");
+    if(horde == nullptr)
+        return(1);
+    for(int i = 0; i < n; i++)
     {
         horde[i].announce();
     }
