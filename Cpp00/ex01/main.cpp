@@ -34,7 +34,7 @@ std::string Contact::getDarkesSecret() const
 
 
 /////////////////////// Phonebook class methods
-PhoneBook::PhoneBook()
+PhoneBook::PhoneBook()  // constructor
 {
     this->contactCount = 0;
     this->oldContactIndex = 0;
@@ -52,6 +52,15 @@ void PhoneBook::AddContact()
     nick = getlineHelper();
     std::cout << "Phone number : ";
     phone = getlineHelper();
+    for(int i = 0; i < phone.length(); i++)
+    {
+        if(!isdigit(phone[i]))
+        {
+
+            std::cout<<"Error: phone number must be digits" << std::endl;
+            return;
+        }
+    }
     std::cout << "Darkes secret: ";
     secret = getlineHelper();
     if(fname.empty() || lname.empty() || nick.empty() || phone.empty() || secret.empty())
@@ -93,17 +102,17 @@ void PhoneBook::SearchForContact() const
 
     int index = input[0] - '0'; // convert the input to numric value
 
-    if(index < 0 || index > contactCount)
+    if(index < 0 || index >= contactCount)
     {
         std::cout << "Error: index out of range" << std::endl;
         return;
     }
     std::cout << ">>> Contact details <<<\n";
-    std::cout << "First name   :" << contact[index].getFirstName() << "\n";
-    std::cout << "Last name    :" << contact[index].getLastName() << "\n";
-    std::cout << "Nick name    :" << contact[index].getNickName() << "\n";
-    std::cout << "Phone number :" << contact[index].getPhoneNumber() << "\n";
-    std::cout << "Darkes secret:" << contact[index].getDarkesSecret() << "\n";
+    std::cout << "First name   : " << contact[index].getFirstName() << "\n";
+    std::cout << "Last name    : " << contact[index].getLastName() << "\n";
+    std::cout << "Nick name    : " << contact[index].getNickName() << "\n";
+    std::cout << "Phone number : " << contact[index].getPhoneNumber() << "\n";
+    std::cout << "Darkes secret: " << contact[index].getDarkesSecret() << "\n";
 }
 
 std::string getlineHelper() // helper func for getline to check eof
