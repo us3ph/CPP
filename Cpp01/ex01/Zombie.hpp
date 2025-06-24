@@ -1,4 +1,4 @@
-#ifndef ZOMBIE__HPP
+#ifndef ZOMBIE_HPP
 #define ZOMBIE_HPP
 
 #include <iostream>
@@ -17,5 +17,6 @@ public:
     void setName(std::string name); // need it after defaut construct
 };
 
+Zombie* zombieHorde( int N, std::string name );
 
 #endif
