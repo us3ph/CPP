@@ -1,4 +1,4 @@
-#include " HumanA.hpp"
+#include "HumanA.hpp"
 
 // construcor humanA
 HumanA::HumanA(const std::string &name, Weapon &weapon) : name(name), weapon(weapon) {}

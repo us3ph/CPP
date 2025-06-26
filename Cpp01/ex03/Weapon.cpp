@@ -3,7 +3,7 @@
 
 Weapon::Weapon(const std::string &type) : type(type) {} // consrtuctor
 
-void Weapon::setType(std::string &type)
+void Weapon::setType(std::string type)
 {
     this->type = type;
 }
