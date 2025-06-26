@@ -10,8 +10,8 @@ private:
 public:
     Weapon(const std::string& type); // constructor
 
-    const std::string& getType() const;
-    void setType(std::string &type);
+    const std::string& getType() const; // getter for type
+    void setType(std::string &type); // optional setter
 };
 
 #endif
