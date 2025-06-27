@@ -1,5 +1,4 @@
 #include <fstream>
-#include <fcntl.h>
 #include <iostream>
 
 int main(int argc, char **argv)
@@ -23,6 +22,7 @@ int main(int argc, char **argv)
     std::cerr << "Error: opennig file";
     return(1);
   }
+
   std::ofstream oufile(fileName + ".replace"); // output file with output file stream
   if(!oufile)
   {
@@ -33,8 +33,8 @@ int main(int argc, char **argv)
   std::string line;
   while(std::getline(infile, line)) // read line
   {
-    size_t pos = 0;  // possition of index
-    while(line.find(s1, pos) != std::string::npos)
+    size_t pos = 0;  // possition is index
+    while((pos = line.find(s1, pos)) != std::string::npos)  //special value that means “not found”
     {
       line.erase(pos, s1.length()); // erase s1 from the line
       line.insert(pos, s2);         //insert s2 inside the line
