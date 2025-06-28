@@ -32,7 +32,6 @@ std::string Contact::getDarkesSecret() const
     return this->darkestSecret;
 }
 
-
 /////////////////////// Phonebook class methods
 PhoneBook::PhoneBook()  // constructor
 {
@@ -57,7 +56,7 @@ void PhoneBook::AddContact()
         if(!isdigit(phone[i]))
         {
 
-            std::cout<<"Error: phone number must be digits" << std::endl;
+            std::cerr <<"Error: phone number must be digits" << std::endl;
             return;
         }
     }
@@ -65,7 +64,7 @@ void PhoneBook::AddContact()
     secret = getlineHelper();
     if(fname.empty() || lname.empty() || nick.empty() || phone.empty() || secret.empty())
     {
-        std::cout << "Error: all fiels must be filled" << std::endl;
+        std::cerr << "Error: all fiels must be filled" << std::endl;
         return;
     }
     contact[oldContactIndex].setInfo(fname, lname, nick, phone, secret);
@@ -96,7 +95,7 @@ void PhoneBook::SearchForContact() const
     input = getlineHelper();  // read form console (cin) to check contact index
     if(input.length() != 1 || !isdigit(input[0]))
     {
-        std::cout << "Error: invalid index input" << std::endl;
+        std::cerr << "Error: invalid index input" << std::endl;
         return;
     }
 
@@ -104,7 +103,7 @@ void PhoneBook::SearchForContact() const
 
     if(index < 0 || index >= contactCount)
     {
-        std::cout << "Error: index out of range" << std::endl;
+        std::cerr << "Error: index out of range" << std::endl;
         return;
     }
     std::cout << ">>> Contact details <<<\n";
@@ -146,9 +145,7 @@ int main()
             PhoneBook.AddContact();
         else if(command == "SEARCH")
             PhoneBook.SearchForContact();
-        // else if(command == "EXIT")
-        //     break;
         else
-            std::cout<< "Error: invalid commande" << std:: endl;
+            std::cerr<< "Error: invalid commande" << std:: endl;
     }
 }

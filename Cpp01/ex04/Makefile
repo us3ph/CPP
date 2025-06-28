@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -rf
 
-SRC = main.cpp
+SRC = Replacer.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
