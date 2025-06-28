@@ -20,29 +20,26 @@ void Harl::error()
     std::cout << "[ ERROR ]\n" << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
+int getLevelCode(std::string level) // helper func that return index in leves array
+{
+  std::string levels[] = {"DEBUG", "INFO", "WARNING","ERROR" };
+  for(int i = 0; i < 4; i++)
+  {
+    if(levels[i] == level)
+      return(i);
+  }
+  return(-1);
+}
 void Harl::complain(std::string level)
 {
-  int code = -1;
-
-  if(level == "DEBUG")
-    code = 0;
-  else if(level == "INFO")
-    code = 1;
-  else if(level == "WARNING")
-    code = 2;
-  else if(level == "ERROR")
-    code = 3;
-  switch(code)
+  switch(getLevelCode(level))
   {
     case 0:
         debug();
-        break;
     case 1:
         info();
-        break;
     case 2:
         warning();
-        break;
     case 3:
         error();
         break;
