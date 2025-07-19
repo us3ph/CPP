@@ -42,3 +42,87 @@ std::ostream& operator<<(std::ostream &out, const Fixed fixed)
   out << fixed.toFloat();
   return out; // Returns reference to the same stream
 }
+
+bool Fixed::operator>(const Fixed &other) const
+{
+  return this->getRawBits() > other.getRawBits();
+}
+
+ bool Fixed::operator<(const Fixed &other) const
+ {
+  return this->getRawBits() < other.getRawBits();
+ }
+
+ bool Fixed::operator>=(const Fixed &other) const
+ {
+  return this->getRawBits() >= other.getRawBits();
+ }
+
+bool Fixed::operator<=(const Fixed &other) const
+{
+  return this->getRawBits() <= other.getRawBits();
+}
+
+bool Fixed::operator==(const Fixed &other) const
+{
+  return this->getRawBits() == other.getRawBits();
+}
+
+bool Fixed::operator!=(const Fixed &other) const
+{
+  return this->getRawBits() != other.getRawBits();
+}
+
+Fixed Fixed::operator+(const Fixed &other) const
+{
+  Fixed rslt;
+  rslt.setRawBits(this->getRawBits() + other.getRawBits());
+  return rslt;
+}
+
+Fixed Fixed::operator-(const Fixed &other) const
+{
+  Fixed rslt;
+  rslt.setRawBits(this->getRawBits() - other.getRawBits());
+  return rslt;
+}
+
+Fixed Fixed::operator*(const Fixed &other) const
+{
+  Fixed rslt;
+  rslt.setRawBits(this->getRawBits() * other.getRawBits());
+  return rslt;
+}
+
+Fixed Fixed::operator/(const Fixed &other) const
+{
+  Fixed rslt;
+  rslt.setRawBits(this->getRawBits() / other.getRawBits());
+  return rslt;
+}
+
+Fixed& Fixed::operator++()
+{
+  this->setRawBits(this->getRawBits() + 1);
+  return *this;
+}
+
+Fixed Fixed::operator++(int) // int just tells the compiler this is post-increment
+{
+  Fixed tmp = *this; // make a copy
+  this->setRawBits(this->getRawBits() + 1); // increase current object
+  return tmp; // return the copy (old value)
+}
+
+Fixed& Fixed::operator--()
+{
+  this->setRawBits(this->getRawBits() - 1);
+  return *this;
+}
+
+Fixed Fixed::operator--(int)
+{
+  Fixed tmp = *this;
+  this->setRawBits(this->getRawBits() - 1);
+  return tmp;
+}
