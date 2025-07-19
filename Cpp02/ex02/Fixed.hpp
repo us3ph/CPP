@@ -37,6 +37,7 @@ public:
   Fixed operator--(int); // post-decrement operator >>+ ()
 
   static Fixed& min(Fixed& a, Fixed& b); // overloaded member functions
+  // static Fixed& max(Fixed& a, Fixed& b);
   static Fixed& max(Fixed& a, Fixed& b);
   static const Fixed& min(const Fixed& a, const Fixed& b);
   static const Fixed& max(const Fixed& a, const Fixed& b);
