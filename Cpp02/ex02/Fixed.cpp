@@ -16,7 +16,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 }
 
 Fixed::~Fixed() {}
-
+///////////////////////////////////////////////////////////
 int Fixed::getRawBits(void) const
 {
   return this->value;
@@ -26,7 +26,7 @@ void Fixed::setRawBits(int const raw)
 {
   this->value = raw;
 }
-
+//////////////////////////////////////////////////////////
 float Fixed::toFloat( void ) const
 {
   return (float)this->value / (1 << fractionalBits);
@@ -36,13 +36,13 @@ int Fixed::toInt( void ) const
 {
   return this->value >> fractionalBits;
 }
-
+//////////////////////////////////////////////////////////////
 std::ostream& operator<<(std::ostream &out, const Fixed fixed)
 {
   out << fixed.toFloat();
   return out; // Returns reference to the same stream
 }
-
+/////////////////////////////////////////////////////////////
 bool Fixed::operator>(const Fixed &other) const
 {
   return this->getRawBits() > other.getRawBits();
@@ -72,7 +72,7 @@ bool Fixed::operator!=(const Fixed &other) const
 {
   return this->getRawBits() != other.getRawBits();
 }
-
+//////////////////////////////////////////////////////////////
 Fixed Fixed::operator+(const Fixed &other) const
 {
   Fixed rslt;
@@ -90,17 +90,28 @@ Fixed Fixed::operator-(const Fixed &other) const
 Fixed Fixed::operator*(const Fixed &other) const
 {
   Fixed rslt;
-  rslt.setRawBits(this->getRawBits() * other.getRawBits());
+  rslt.setRawBits((this->getRawBits() * other.getRawBits()) >> fractionalBits);
   return rslt;
 }
+/* ex for * operator
+5.05f → 5.05 * 256 = 1292.8 ≈ 1293
 
+2.0f → 2 * 256 = 512
+
+1293 * 512 = 662016
+
+662016 >> 8 = 2586
+
+2586 / 256 = 10.1016
+*/
 Fixed Fixed::operator/(const Fixed &other) const
 {
   Fixed rslt;
-  rslt.setRawBits(this->getRawBits() / other.getRawBits());
+  // adjusts back the scale properly
+  rslt.setRawBits((this->getRawBits() << fractionalBits) / other.getRawBits());
   return rslt;
 }
-
+//////////////////////////////////////////////////////////////////
 Fixed& Fixed::operator++()
 {
   this->setRawBits(this->getRawBits() + 1);
@@ -126,7 +137,7 @@ Fixed Fixed::operator--(int)
   this->setRawBits(this->getRawBits() - 1);
   return tmp;
 }
-
+/////////////////////////////////////////////////////////////////////////////
 Fixed& Fixed::min(Fixed& a, Fixed& b)
 {
   if(a < b)

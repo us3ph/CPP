@@ -37,7 +37,6 @@ public:
   Fixed operator--(int); // post-decrement operator >>+ ()
 
   static Fixed& min(Fixed& a, Fixed& b); // overloaded member functions
-  // static Fixed& max(Fixed& a, Fixed& b);
   static Fixed& max(Fixed& a, Fixed& b);
   static const Fixed& min(const Fixed& a, const Fixed& b);
   static const Fixed& max(const Fixed& a, const Fixed& b);
@@ -46,8 +45,8 @@ public:
 
   int getRawBits(void) const;
   void setRawBits(int const raw);
-  float toFloat(void) const; // that converts the fixed-point to a floating-point
-  int toInt(void) const; // that converts the fixed-point to an integer value.
+  float toFloat(void) const; // converts the fixed-point to a floating-point
+  int toInt(void) const; // converts the fixed-point to an integer value
 };
 
 std::ostream& operator<<(std::ostream &out, const Fixed fixed); // insertion operator overload
