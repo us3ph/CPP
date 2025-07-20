@@ -15,6 +15,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) $(CFLAGS) $(OBJ) -o $(NAME)
 
+
 clean:
 	$(RM) $(OBJ)
 

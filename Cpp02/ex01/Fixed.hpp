@@ -26,5 +26,5 @@ public:
   int toInt( void ) const; // that converts the fixed-point value to an integer value.
 };
 // std::ostream the base class for all output streams
-std::ostream& operator<<(std::ostream &out, const Fixed fixed); // insertion operator overload 
+std::ostream& operator<<(std::ostream &out, const Fixed &fixed); // insertion operator overload 
 #endif

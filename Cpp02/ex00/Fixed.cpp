@@ -8,13 +8,14 @@ Fixed::Fixed() : value(0)
 Fixed::Fixed(const Fixed &other) : value(other.value)
 {
   std::cout << "Copy constructor called" << std::endl;
+  *this = other;
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
   std::cout << "Copy assignment operator called" << std::endl;
   if(this != &other) // self assigment check
-    this->value = other.value;
+    this->value = other.getRawBits();
   return *this; // derefrence this pointer to return curent object
 }
 

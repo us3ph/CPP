@@ -19,13 +19,14 @@ Fixed::Fixed(const float value) : value(roundf(value * (1 << fractionalBits)))
 Fixed::Fixed(const Fixed &other) : value(other.value)
 {
   std::cout << "Copy constructor called" << std::endl;
+  *this = other;
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
   std::cout << "Copy assignment operator called" << std::endl;
   if(this != &other)
-    this->value = other.value;
+    this->value = other.getRawBits();
   return *this;
 }
 
@@ -55,8 +56,8 @@ int Fixed::toInt( void ) const
   return this->value >> fractionalBits;
 }
 
-std::ostream& operator<<(std::ostream &out, const Fixed fixed)
+std::ostream& operator<<(std::ostream &out, const Fixed& fixed)
 {
-  out << fixed.toFloat();
-  return out; // Returns reference to the same stream
+    out << fixed.toFloat();  // Insert the Fixed object as a float
+    return out;              // Return the stream for chaining
 }
