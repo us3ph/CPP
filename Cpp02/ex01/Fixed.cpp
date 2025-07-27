@@ -10,7 +10,7 @@ Fixed::Fixed(const int value) : value( value << fractionalBits)
   std::cout << "Int constructor called" << std::endl;
 }
 
-// roundf() functions used for rounding floating-point numbers to the nearest integer
+// roundf() function used for rounding floating-point numbers to the nearest integer
 Fixed::Fixed(const float value) : value(roundf(value * (1 << fractionalBits)))
 {
   std::cout << "Float constructor called" << std::endl;
@@ -37,7 +37,6 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits(void) const
 {
-  // std::cout << "getRawBits member function called" << std::endl;
   return this->value;
 }
 
