@@ -5,7 +5,7 @@ ClapTrap::ClapTrap() : Name("Default"), HitPoints(10), EnergyPoints(10), AttackD
     std::cout << "Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &other) : Name(other.Name), HitPoints(other.EnergyPoints), EnergyPoints(other.EnergyPoints), AttackDamage(other.AttackDamage)
+ClapTrap::ClapTrap(const ClapTrap &other) : Name(other.Name), HitPoints(other.HitPoints), EnergyPoints(other.EnergyPoints), AttackDamage(other.AttackDamage)
 {
     std::cout << "Copy constructor called" << std::endl;
 }
@@ -18,7 +18,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &other) // copy assigment operator
         this->EnergyPoints = other.EnergyPoints;
         this->AttackDamage = other.AttackDamage;
     }
-    std::cout <<"copy assigment operator" << std::endl;
+    std::cout <<"copy assigment operator called" << std::endl;
     return *this;
 }
 
@@ -60,5 +60,5 @@ void ClapTrap::beRepaired(unsigned int amount)
     }
     HitPoints += amount;
     EnergyPoints--;
-    std::cout << "clapTrap " << Name << " repairs itself for " << amount << " HP. " << " HP is now " << HitPoints << std:: endl;
+    std::cout << "ClapTrap " << Name << " repairs itself for " << amount << " HP. " << " HP is now " << HitPoints << std:: endl;
 }
