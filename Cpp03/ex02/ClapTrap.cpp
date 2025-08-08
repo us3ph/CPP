@@ -10,7 +10,7 @@ ClapTrap::ClapTrap(const ClapTrap &other) : Name(other.Name), HitPoints(other.Hi
     std::cout << "Copy constructor called" << std::endl;
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap &other) // copy assigment operator
+ClapTrap& ClapTrap::operator=(const ClapTrap &other)
 {
     if(this != &other)
     {
@@ -48,7 +48,7 @@ void ClapTrap::attack(const std::string& target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
     HitPoints -= amount;
-    if(HitPoints < 0) // ensures doesn't go into negative health
+    if(HitPoints < 0)
         HitPoints = 0;
     std::cout << "ClapTap " << Name << " take " << amount << " points of damage " << " HP is now " << HitPoints << std::endl;
 }
