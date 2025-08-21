@@ -5,7 +5,7 @@
 
 class ClapTrap
 {
-protected: //  allow child class to acess base class members
+protected: //  allow child class to access base class members
 
     std::string Name;
     int HitPoints;

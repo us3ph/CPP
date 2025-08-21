@@ -3,7 +3,7 @@
 int main()
 {
     ScavTrap bot("astro");
-    bot.attack("student");
+    bot.attack("enemy");
     bot.guardGate();
 
 }

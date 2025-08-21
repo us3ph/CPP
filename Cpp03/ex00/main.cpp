@@ -2,10 +2,11 @@
 
 int main()
 {
-    ClapTrap bot("yass");
+    ClapTrap bot("astro");
+    ClapTrap enemy("enemy");
     bot.attack("enemy");
-    bot.attack("enemy");
-    bot.attack("enemy");
+    enemy.takeDamage(5);
+    enemy.attack("astro");
     bot.takeDamage(5);
     bot.beRepaired(3);
 }
