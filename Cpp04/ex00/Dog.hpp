@@ -12,7 +12,7 @@ public:
     Dog(const Dog &other);
     Dog& operator=(const Dog &other);
     virtual ~Dog();
-    void setType(std::string name);
+    // void setType(std::string name);
     void makeSound() const;
 };
 
