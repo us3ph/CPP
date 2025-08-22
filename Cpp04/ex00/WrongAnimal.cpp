@@ -11,10 +11,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal &other)
     return *this;
 }
 
-WrongAnimal::~WrongAnimal()
-{
-
-}
+WrongAnimal::~WrongAnimal() {}
 
 const std::string& WrongAnimal::getType() const
 {
@@ -23,5 +20,5 @@ const std::string& WrongAnimal::getType() const
 
 void WrongAnimal::makeSound() const
 {
-    std::cout << "Generic WrongAnimal sound" << std::endl;
+    std::cout << "WrongAnimal sound" << std::endl;
 }

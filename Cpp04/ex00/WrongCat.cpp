@@ -24,5 +24,5 @@
 
     void WrongCat::makeSound() const
     {
-        std::cout << "WrongAnimal sound" << std::endl;
+        std::cout << "Wrong cat sound" << std::endl;
     }

@@ -12,7 +12,6 @@ public:
     Cat(const Cat &other);
     Cat& operator=(const Cat &other);
     ~Cat();
-    // void setType(std::string name);
     void makeSound() const; // must be const to override base class
 };
 

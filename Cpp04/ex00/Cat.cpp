@@ -25,10 +25,6 @@ Cat::~Cat()
     std::cout << "Cat destructor called" << std::endl;
 }
 
-// void Cat::setType(std::string type)
-// {
-//     this->type = type;
-// }
 
 void Cat::makeSound() const
 {
