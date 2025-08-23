@@ -19,20 +19,26 @@ int main()
 // delete i;
 // return 0;
 
-  Animal *animal[100];
+  const Animal *j = new Dog();
+  const Animal *i = new Cat();
 
-  for(int i = 0; i < 50; i++)
+  delete j;
+  delete i;
+
+  Animal *animal[4];
+
+  for(int i = 0; i < 2; i++)
       animal[i] = new Dog();
-  for(int i = 50; i < 100 ;i++)
+  for(int i = 2; i < 4 ;i++)
       animal[i] = new Cat();
   std:: cout << "this is the part of dogs" << std::endl;
-  for(int i = 0; i < 50; i++)
+  for(int i = 0; i < 2; i++)
     animal[i]->makeSound();
   std:: cout << "this is the part of cats" << std::endl;
-  for(int i = 50; i < 100 ; i++)
+  for(int i = 2; i < 4 ; i++)
     animal[i]->makeSound();
-  for(int i = 0; i < 100; i++)
+  for(int i = 0; i < 4; i++)
     delete animal[i];
-
+  
 }
 
