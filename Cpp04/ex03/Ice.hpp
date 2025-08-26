@@ -4,7 +4,7 @@
 #include "iostream"
 #include "AMateria.hpp"
 
-class Ice : virtual public AMateria
+class Ice : public AMateria
 {
 private:
     std::string _type;
