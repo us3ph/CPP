@@ -3,11 +3,15 @@
 
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
+
+//  Character class acts as a middleman it takes the slot num and target
+// finds the right materia and tells that materia to act on the target
+
 class Character : public ICharacter
 {
 private:
     std::string _name;
-    AMateria *arr[4];
+    AMateria *arr[4];  // inventory of materia
 public:
     Character();
     Character(const std::string &name);
