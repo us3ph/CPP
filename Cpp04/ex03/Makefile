@@ -6,7 +6,8 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 RM = rm -rf
 
-SRC = AMateria.cpp main.cpp
+SRC = AMateria.cpp Character.cpp Cure.cpp Ice.cpp ICharacter.cpp \
+	  IMateriaSource.cpp MateriaSource.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

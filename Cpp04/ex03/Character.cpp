@@ -12,8 +12,10 @@ Character::Character(const std::string &name) : _name(name)
         arr[i] = NULL;
 }
 
-Character::Character(const Character &other)
+Character::Character(const Character &other) /////////////
 {
+    for(int i = 0; i < 4; i++)
+        arr[i] = NULL;    
     for(int i = 0; i < 4; i++)
     {
         if(other.arr[i] == NULL)
@@ -24,10 +26,14 @@ Character::Character(const Character &other)
 }
 Character& Character::operator=(const Character &other)
 {
+    _name = other._name;
+    for(int i = 0; i < 4; i++)
+    {
+        delete arr[i];
+        arr[i] = NULL;
+    }
     if(this != &other)
     {
-        for(int i = 0; i < 4; i++)
-            delete other.arr[i]; // delete old materia first;
         for(int i = 0; i < 4; i++)
         {
             if(other.arr[i] == NULL)
@@ -55,7 +61,7 @@ void Character::equip(AMateria* m)
         return;
     for(int i = 0; i < 4; i++)
     {
-        if(arr[i] == NULL);
+        if(arr[i] == NULL)
         {
             arr[i] = m;
             return;
@@ -71,7 +77,7 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
-    if(idx < 0 || idx >= 4)
+    if(idx < 0 || idx >= 4 || arr[idx] == NULL)
         return;
     arr[idx]->use(target);
 }

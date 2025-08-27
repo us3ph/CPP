@@ -1,24 +1,15 @@
 #include "Cure.hpp"
 
-Cure::Cure()
-{
-    this->_type = "cure";
-}
+Cure::Cure() : AMateria("cure") {}
 
-Cure::Cure(std::string const &type)
-{
-    this->_type = type;
-}
+Cure::Cure(std::string const &type) : AMateria(type) {}
 
-Cure::Cure(const Cure &other)
-{
-    *this = other;
-}
+Cure::Cure(const Cure &other) : AMateria(other){}// call parent copy constructor
 
 Cure& Cure::operator=(const Cure &other)
 {
     if(this != &other)
-        this->_type = other._type;
+        AMateria::operator=(other);
     return *this;
 }
 
@@ -29,11 +20,10 @@ Cure::~Cure()
 
 AMateria* Cure::clone() const
 {
-    AMateria *b = new Cure(*this);
-    return b;
+    return new Cure(*this); // create new Ice using copy constructor
 }
 
 void Cure::use(ICharacter& target)
 {
-    std::cout << "* heals " << target << "’s wounds *" << std::endl;
+    std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

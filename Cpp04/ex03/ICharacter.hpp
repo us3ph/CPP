@@ -1,5 +1,5 @@
-#ifndef ICHARATER_HPP
-#define ICHARACER_HPP
+#ifndef ICHARACTER_HPP
+#define ICHARACTER_HPP
 
 #include "iostream"
 #include "AMateria.hpp"
