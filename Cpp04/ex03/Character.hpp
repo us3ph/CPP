@@ -7,6 +7,13 @@
 //  Character class acts as a middleman it takes the slot num and target
 // finds the right materia and tells that materia to act on the target
 
+typedef struct s_arr
+{ 
+    AMateria *m;
+    struct s_arr *next;
+} t_arr;
+
+t_arr *inven;
 class Character : public ICharacter
 {
 private:
@@ -25,4 +32,5 @@ public:
     virtual void use(int idx, ICharacter& target);
 };
 
+void remove_node(t_arr*& head, AMateria *materia);
 #endif

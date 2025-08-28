@@ -4,12 +4,14 @@ Character::Character() : _name("Default")
 {
     for(int i = 0; i < 4; i++)
         arr[i] = NULL;
+    inven = NULL;
 }
 
 Character::Character(const std::string &name) : _name(name)
 {
     for(int i = 0; i < 4; i++)
         arr[i] = NULL;
+    inven = NULL;
 }
 
 Character::Character(const Character &other) /////////////
@@ -18,7 +20,7 @@ Character::Character(const Character &other) /////////////
         arr[i] = NULL;    
     for(int i = 0; i < 4; i++)
     {
-        if(other.arr[i] == NULL)
+        if(other.arr[i] != NULL)
             arr[i] = other.arr[i]->clone(); // for deep copy
         else
             arr[i] = NULL;
@@ -36,7 +38,7 @@ Character& Character::operator=(const Character &other)
     {
         for(int i = 0; i < 4; i++)
         {
-            if(other.arr[i] == NULL)
+            if(other.arr[i] != NULL)
                 arr[i] = other.arr[i]->clone();
         }
     }
@@ -45,9 +47,15 @@ Character& Character::operator=(const Character &other)
 
 Character::~Character()
 {
-    // delete[] arr;
+    while(inven)
+    {
+        t_arr *tmp = inven;
+        inven = inven->next;
+        delete tmp->m;
+        delete tmp;
+    }
     for(int i = 0; i < 4; i++)
-        delete arr[i];
+        arr[i] = NULL;
 }
 
 std::string const & Character::getName() const
@@ -61,9 +69,28 @@ void Character::equip(AMateria* m)
         return;
     for(int i = 0; i < 4; i++)
     {
+        if(arr[i] == m) // avoid dublicate
+            return;
+    }
+
+    t_arr *current = inven;
+
+    while(current != NULL) //check linked list for duplicates
+    {
+        if(current->m == m)
+            return;
+        current = current->next;
+    }
+
+    for(int i = 0; i < 4; i++)
+    {
         if(arr[i] == NULL)
         {
             arr[i] = m;
+            t_arr *new_node = new t_arr;
+            new_node->m = m;
+            new_node->next = inven;
+            inven = new_node;
             return;
         }
     }
@@ -72,6 +99,17 @@ void Character::unequip(int idx)
 {
     if(idx < 0 || idx >= 4 || arr[idx] == NULL)
         return;
+
+    t_arr *current = inven;
+    while(current)
+    {
+        if(current->m == arr[idx])
+        {
+            remove_node(inven, arr[idx]);
+            break;
+        }
+        current = current->next;
+    }
     arr[idx] = NULL;
 }
 
@@ -80,4 +118,28 @@ void Character::use(int idx, ICharacter& target)
     if(idx < 0 || idx >= 4 || arr[idx] == NULL)
         return;
     arr[idx]->use(target);
+}
+
+void remove_node(t_arr*& head, AMateria *materia)
+{
+    if(!head)
+        return;
+    if(head->m == materia)
+    {
+        t_arr *tmp = head;
+        head = head->next;
+        delete tmp;
+        return;
+    }
+    t_arr *current = head;
+    while(current->next && current->next->m != materia)
+        current = current->next;
+    if(current->next && current->next->m == materia)
+    {   
+        t_arr *tmp;
+
+        tmp = current->next;
+        current->next = tmp->next;
+        delete tmp; 
+    }
 }
