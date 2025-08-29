@@ -8,17 +8,19 @@
 // finds the right materia and tells that materia to act on the target
 
 typedef struct s_arr
-{ 
+{
     AMateria *m;
     struct s_arr *next;
 } t_arr;
 
-t_arr *inven;
+// t_arr *inven;
 class Character : public ICharacter
 {
 private:
     std::string _name;
     AMateria *arr[4];  // inventory of materia
+    t_arr *inven;
+    t_arr *rm;
 public:
     Character();
     Character(const std::string &name);
