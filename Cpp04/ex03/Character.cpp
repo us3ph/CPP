@@ -4,16 +4,12 @@ Character::Character() : _name("Default")
 {
     for(int i = 0; i < 4; i++)
         arr[i] = NULL;
-    inven = NULL;
-    rm = NULL;
 }
 
 Character::Character(const std::string &name) : _name(name)
 {
     for(int i = 0; i < 4; i++)
         arr[i] = NULL;
-    inven = NULL;
-    rm = NULL;
 }
 
 Character::Character(const Character &other) : _name(other._name)
@@ -41,7 +37,7 @@ Character& Character::operator=(const Character &other)
         for(int i = 0; i < 4; i++)
         {
             if(other.arr[i] != NULL)
-                arr[i] = other.arr[i]->clone();
+                arr[i] = other.arr[i]->clone(); // for deep copy
         }
     }
     return *this;
@@ -53,7 +49,7 @@ Character::~Character()
     {
         t_arr *tmp = inven;
         inven = inven->next;
-        delete tmp->m; // delete materia that was unequipped
+        delete tmp->m; // delete materia
         delete tmp; // delete linked list node
     }
     while(rm)
@@ -63,7 +59,7 @@ Character::~Character()
         delete tmp;
     }
     for(int i = 0; i < 4; i++)
-        delete arr[i]; // delete materias still in inventory
+        delete arr[i];
 }
 
 std::string const & Character::getName() const
@@ -80,19 +76,29 @@ void Character::equip(AMateria* m)
         if(arr[i] == m) // avoid dublicate
             return;
     }
+    
+    t_arr *list = inven;
+    while(list)
+    {
+        if(list->m == m)
+        {
+            std::cerr << "Error cant equip the same materia" << std::endl;
+            return;
+        }
+        list = list->next;
+    }
     for(int i = 0; i < 4; i++)
     {
         if(arr[i] == NULL)
         {
             arr[i] = m->clone(); // clone instead of sharing
             t_arr *new_node = new t_arr;
-            new_node->m = arr[i];
-            new_node->next = rm; // oint to old head
-            rm = new_node; // update head
+            new_node->m = m;
+            new_node->next = inven; // point to old head
+            inven = new_node; // update head
             return;
         }
     }
-    delete m;
 }
 void Character::unequip(int idx)
 {
@@ -100,9 +106,9 @@ void Character::unequip(int idx)
         return;
 
     t_arr *new_node = new t_arr;
-    new_node->m = arr[idx]; // add unequiped materia to rm list and delete it in distructor
-    new_node->next = inven;
-    inven = new_node;
+    new_node->m = arr[idx]; // add unequiped materia to rm list and delete it in main
+    new_node->next = rm;
+    rm = new_node;
 
     arr[idx] = NULL;
 }
@@ -113,27 +119,19 @@ void Character::use(int idx, ICharacter& target)
         return;
     arr[idx]->use(target);
 }
-
-// void remove_node(t_arr*& head, AMateria *materia)
-// {
-//     if(!head)
-//         return;
-//     if(head->m == materia)
-//     {
-//         t_arr *tmp = head;
-//         head = head->next;
-//         delete tmp;
-//         return;
-//     }
-//     t_arr *current = head;
-//     while(current->next && current->next->m != materia)
-//         current = current->next;
-//     if(current->next && current->next->m == materia)
-//     {
-//         t_arr *tmp;
-
-//         tmp = current->next;
-//         current->next = tmp->next;
-//         delete tmp;
-//     }
-// }
+void delete_lists()
+{
+    while(inven)
+    {
+        t_arr *tmp = inven;
+        inven = inven->next;
+        delete tmp->m; // delete materia that was unequipped
+        delete tmp; // delete linked list node
+    }
+    while(rm)
+    {
+        t_arr *tmp = rm;
+        rm = rm->next;
+        delete tmp;
+    }
+}

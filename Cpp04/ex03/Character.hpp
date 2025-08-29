@@ -13,26 +13,25 @@ typedef struct s_arr
     struct s_arr *next;
 } t_arr;
 
-// t_arr *inven;
+static t_arr *inven;
+static t_arr *rm;
 class Character : public ICharacter
 {
 private:
     std::string _name;
     AMateria *arr[4];  // inventory of materia
-    t_arr *inven;
-    t_arr *rm;
 public:
     Character();
     Character(const std::string &name);
     Character(const Character &other);
     Character& operator=(const Character &other);
     ~Character();
-
+    
     virtual std::string const & getName() const;
     virtual void equip(AMateria* m);
-    virtual void unequip(int idx);
     virtual void use(int idx, ICharacter& target);
+    virtual void unequip(int idx);
 };
 
-void remove_node(t_arr*& head, AMateria *materia);
+void delete_lists();
 #endif
