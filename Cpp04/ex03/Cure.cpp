@@ -2,9 +2,9 @@
 
 Cure::Cure() : AMateria("cure") {}
 
-Cure::Cure(std::string const &type) : AMateria(type) {}
+Cure::Cure(std::string const &type) : AMateria(type) {} // call parent copy constructor
 
-Cure::Cure(const Cure &other) : AMateria(other){}// call parent copy constructor
+Cure::Cure(const Cure &other) : AMateria(other){}
 
 Cure& Cure::operator=(const Cure &other)
 {

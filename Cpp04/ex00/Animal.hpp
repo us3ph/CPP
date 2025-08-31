@@ -11,7 +11,7 @@ public:
     Animal();
     Animal(const Animal &other);
     Animal& operator=(const Animal &other);
-    virtual  ~Animal(); // if you plan to delete derived objects through a base class pointer.
+    virtual  ~Animal(); // delete derived objects through a base class pointer
     const std::string& getType() const;
     virtual void makeSound() const;
 };

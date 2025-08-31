@@ -14,7 +14,7 @@ public:
     Cat(const Cat &other);
     Cat& operator=(const Cat &other);
     ~Cat();
-    void makeSound() const; // must be const to override base class
+    void makeSound() const;
 };
 
 

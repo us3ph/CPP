@@ -54,7 +54,7 @@
       if(tmpl[i] == NULL)
       {
         tmpl[i] = materia->clone();
-        delete materia; // should take ownership of the passed materia and delete it after cloning
+        delete materia;
         return;
       }
     }

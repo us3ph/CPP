@@ -1,13 +1,12 @@
-NAME = Interfaces
+NAME = Bureaucrat
 
 CXX  = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98  #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 RM = rm -rf
 
-SRC = AMateria.cpp Character.cpp Cure.cpp Ice.cpp \
-	  MateriaSource.cpp main.cpp
+SRC = Bureaucrat.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -15,7 +14,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CXX) $(CFLAGS) $(OBJ) -o $(NAME)
-
 
 clean:
 	$(RM) $(OBJ)

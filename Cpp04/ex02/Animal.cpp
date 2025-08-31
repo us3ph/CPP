@@ -13,7 +13,6 @@ AAnimal::AAnimal(const AAnimal &other)
 
 AAnimal& AAnimal::operator=(const AAnimal &other)
 {
-    // std::cout << "Animal copy assigment operator called " << std::endl;
     if(this != &other)
         this->type = other.type;
     return *this;

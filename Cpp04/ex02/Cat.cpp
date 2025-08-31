@@ -12,7 +12,7 @@ Cat::Cat(const Cat &other)
 {
     std::cout << "Cat copy constructor called" << std::endl;
     *this = other;
-    brain = new Brain(*other.brain); // creat new brain for deep copy
+    brain = new Brain(*other.brain); // new brain for deep copy
 }
 
 Cat& Cat::operator=(const Cat &other)
