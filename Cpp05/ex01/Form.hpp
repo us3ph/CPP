@@ -3,6 +3,7 @@
 
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
 class Form
 {
 private:
@@ -30,6 +31,7 @@ public:
     void beSigned(Bureaucrat& bureaucrat);
     int getGradeTosign() const;
     int getGradeToexcute() const;
+    bool getSigned() const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Form);

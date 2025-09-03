@@ -67,7 +67,16 @@ int Form::getGradeToexcute() const
     return this->_gradeToexcute;
 }
 
-std::ostream& operator<<(std::ostream& out, const Form)
-{
+ bool Form::getSigned() const
+ {
+    return _signed;
+ }
 
+std::ostream& operator<<(std::ostream& out, const Form &form)
+{
+    out << "Form: " << form.getName() 
+        << ", signed: " << (form.getSigned() ? "yes" : "no")
+        << ", grade to sign: " << form.getGradeTosign()
+        << ", grade to execute: " << form.getGradeToexcute();
+    return out;
 }
