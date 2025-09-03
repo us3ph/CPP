@@ -11,16 +11,27 @@ private:
     int _gradeTosign;
     int _gradeToexcute;
 public:
+    class GradeTooHighException : public std::exception
+    {
+        public:
+            virtual const char* what() const throw();
+    };
+    class GradeTooLowException : public std::exception
+    {
+        public:
+            virtual const char* what() const throw(); 
+    };
     Form();
-    Form(); // param 
+    Form(const std::string &name, int gradeTosign, int gradeToexcute); // param 
     Form(const Form &other);
     Form& operator=(const Form &other);
     ~Form();
     std::string const& getName() const;
-    void getSign() const;
-    void getGradeTosign() const;
-    void getGradeToexcute() const;
+    void beSigned(Bureaucrat& bureaucrat);
+    int getGradeTosign() const;
+    int getGradeToexcute() const;
 };
 
+std::ostream& operator<<(std::ostream& out, const Form);
 
 #endif
