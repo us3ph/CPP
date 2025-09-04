@@ -4,8 +4,8 @@
 int main()
 {
 
-    try
-    {
+    // try
+    // {
         Form contract1("employees contract", 20, 25);
         Form contract2("employees contract", 20, 25);
         Form contract3("employees contract", 20, 25);
@@ -18,11 +18,11 @@ int main()
         intern.signForm(contract3);
 
     }
-    catch(const std::exception& e)
-    {
-        // std::cerr << e.what() << '\n';
-        std::cout << "test" << std::endl; // check what happen here
-        // return;
-    }
+    // catch(const std::exception& e)
+    // {
+    //     // std::cerr << e.what() << '\n';
+    //     std::cout << "test" << std::endl; // check what happen here
+    //     // return;
+    // }
     
-}
+// }
