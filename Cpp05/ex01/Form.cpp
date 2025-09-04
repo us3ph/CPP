@@ -9,7 +9,7 @@ Form::Form() : _name("Default"), _signed(false), _gradeTosign(150), _gradeToexcu
         throw GradeTooLowException();
 }
 
-Form::Form(const std::string &name, int gradeTosign, int gradeToexcute) : _name(name), _signed(false), _gradeTosign(gradeTosign), _gradeToexcute(gradeToexcute)
+Form::Form(const std::string &name, int gradeTosign, int gradeToexcute) : _name(name), _gradeTosign(gradeTosign), _gradeToexcute(gradeToexcute)
 {
     if(_gradeTosign < 1 || _gradeToexcute < 1)
         throw GradeTooHighException();
