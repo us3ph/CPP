@@ -1,7 +1,7 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include "Bureaucrat.hpp"
+#include "iostream"
 
 class Bureaucrat;
 class Form
@@ -34,6 +34,6 @@ public:
     bool getSigned() const;
 };
 
-std::ostream& operator<<(std::ostream& out, const Form);
+std::ostream& operator<<(std::ostream& out, const Form &form);
 
 #endif

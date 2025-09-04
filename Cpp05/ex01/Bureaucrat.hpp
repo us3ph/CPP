@@ -34,6 +34,6 @@ public:
     void signForm(Form &form); // implement it
 };
 
-std::ostream& operator<<(std::ostream& out, const Bureaucrat bureaucrat);
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
 
 #endif
