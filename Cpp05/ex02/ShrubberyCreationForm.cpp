@@ -1,21 +1,9 @@
 #include "ShrubberyCreationForm.hpp"
 #include "fstream"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", 145, 137)
-{
-     if(_gradeTosign < 145 || _gradeToexcute < 137)
-          throw GradeTooHighException();
-     if(_gradeTosign > 137 || _gradeToexcute > 137)
-          throw GradeTooLowException();
-}
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", 145, 137) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("Shrubbery creation", 145, 137), _target(target)
-{
-     if(_gradeTosign < 145 || _gradeToexcute < 137)
-          throw GradeTooHighException();
-     if(_gradeTosign > 137 || _gradeToexcute > 137)
-          throw GradeTooLowException();
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("Shrubbery creation", 145, 137), _target(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other) {}
 
@@ -56,6 +44,10 @@ void ShrubberyCreationForm::creatShrubbery(const std::string &target) const
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
+     if(!getSigned())
+          throw FormNotSignedException();
+     if(executor.getGrade() > _gradeToexcute)
+          throw GradeTooLowException();
      std::ofstream oufile(_target + "_shrubbery");
      try
      {
