@@ -3,41 +3,66 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", 145, 137)
 {
-  if(_gradeTosign < 145 || _gradeToexcute < 137)
-    throw GradeTooHighException();
-  if(_gradeTosign > 137 || _gradeToexcute > 137)
-    throw GradeTooLowException();
+     if(_gradeTosign < 145 || _gradeToexcute < 137)
+          throw GradeTooHighException();
+     if(_gradeTosign > 137 || _gradeToexcute > 137)
+          throw GradeTooLowException();
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("Shrubbery creation", 145, 137), _target(target)
 {
-  if(_gradeTosign < 145 || _gradeToexcute < 137)
-    throw GradeTooHighException();
-  if(_gradeTosign > 137 || _gradeToexcute > 137)
-    throw GradeTooLowException();
+     if(_gradeTosign < 145 || _gradeToexcute < 137)
+          throw GradeTooHighException();
+     if(_gradeTosign > 137 || _gradeToexcute > 137)
+          throw GradeTooLowException();
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other) {}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
 {
-  if(this != &other)
-    AForm::operator=(other);
-  return *this;
+     if(this != &other)
+          AForm::operator=(other);
+     return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
+const char* ShrubberyCreationForm::CannotCreatOutputFileException::what() const throw()
+{
+     return("Failed to create output file");
+}
+
+void ShrubberyCreationForm::creatShrubbery(const std::string &target) const
+{
+     std::ofstream oufile(target + "_shrubbery");
+     if(!oufile)
+          throw CannotCreatOutputFileException();
+     oufile << "          &&& &&  & &&              \n";
+     oufile << "       && &/|&|& ()|/ @,&&          \n";
+     oufile << "       &//&||/& /_/)_&/_&()         \n";
+     oufile << "     &() &//&|()|/&// '%)_&/_&&     \n";
+     oufile << "   &_///_&&_// |& |&&/&__%_/_& &&   \n";
+     oufile << "  &&   && & &| &| /& & % <>& /&&    \n";
+     oufile << "   <>&_---<>&/&/|&&-&&--%---<>~     \n";
+     oufile << "       &&      |||/                 \n";
+     oufile << "               |||                  \n";
+     oufile << "               |||                  \n";
+     oufile << "               |||                  \n";
+     oufile << "         , -=-~  .-^-._             \n";
+     oufile.close();
+  
+}
+
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
-  std::ofstream oufile(_target + "_shrubbery"); // output file with output file stream
-  if(!oufile)
-  {
-    std::cerr << "Error: cannot creat output file" << std::endl;
-    return;
-    /// check if i have to creat exception for this error creat outfile ///////
-
-  std::ifstream oufile
-    // oufile.close();
-  }
+     std::ofstream oufile(_target + "_shrubbery");
+     try
+     {
+          creatShrubbery(_target);
+     }
+     catch(const std::exception& e)
+     {
+          std::cerr << e.what() << '\n';
+     }
 }
