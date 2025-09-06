@@ -8,9 +8,6 @@ class ShrubberyCreationForm : public AForm
 {
 private:
   const std::string _target;
-  bool _signed;
-  int _gradeTosign;
-  int _gradeToexcute;
 public:
   class CannotCreatOutputFileException : public std::exception
   {

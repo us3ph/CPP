@@ -31,10 +31,7 @@ AForm& AForm::operator=(const AForm &other)
     return *this;
 }
 
-AForm::~AForm()
-{
-
-}
+AForm::~AForm() {}
 
 const char* AForm::GradeTooHighException::what() const throw()
 {

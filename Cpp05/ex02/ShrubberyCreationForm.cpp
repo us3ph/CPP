@@ -5,7 +5,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Default", 145, 137) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) : AForm("Shrubbery creation", 145, 137), _target(target) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other), _target(other._target) {}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
 {
@@ -23,7 +23,7 @@ const char* ShrubberyCreationForm::CannotCreatOutputFileException::what() const 
 
 void ShrubberyCreationForm::creatShrubbery(const std::string &target) const
 {
-     std::ofstream oufile(target + "_shrubbery");
+     std::ofstream oufile((target + "_shrubbery").c_str());
      if(!oufile)
           throw CannotCreatOutputFileException();
      oufile << "          &&& &&  & &&              \n";
@@ -46,9 +46,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
      if(!getSigned())
           throw FormNotSignedException();
-     if(executor.getGrade() > _gradeToexcute)
+     if(executor.getGrade() > getGradeToexcute())
           throw GradeTooLowException();
-     std::ofstream oufile(_target + "_shrubbery");
      try
      {
           creatShrubbery(_target);
