@@ -1,3 +1,4 @@
+#include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -5,20 +6,31 @@
 #include "Intern.hpp"
 
 int main()
-{
-    std::string costumer("bob", 1);
-    std::string Form1 = "Shrubbery creation";
-    std::string From2 = "Robotomy creation";
-    std::string Form3 = "Pardon creation";
-    // std::string Form4 = "fake form";
-
+{    
+    AForm* forms[4] = {NULL, NULL, NULL, NULL};
     try
     {
         Intern intern;
-        intern.makeForm(Form3, costumer);
+        Bureaucrat boss("boss", 150);
+        forms[0] = intern.makeForm("Shrubbery", "Bender");
+        forms[1] = intern.makeForm("Robotomy", "home");
+        forms[2] = intern.makeForm("Pardon","criminal");
+        // forms[3] = intern.makeForm("invalid form", "test");
+        for(int i = 0; i < 1; i++)
+        {
+            if(forms[i])
+            {
+                boss.signForm(*forms[i]);
+                boss.executeForm(*forms[i]);
+            }
+        }
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
+    }
+    for(int i = 0; i < 4; i++)
+    {
+        delete forms[i];
     }
 }

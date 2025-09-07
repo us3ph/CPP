@@ -14,6 +14,11 @@ Intern& Intern::operator=(const Intern &other)
 
 Intern::~Intern()
 {
+    for(int i = 0; i < 3; i++)
+    {
+        if(formCreators[i] != NULL)
+            delete formCreators[i]("");
+    }
 }
 
 AForm* (*Intern::formCreators[3])(const std::string& target) =
@@ -24,7 +29,7 @@ AForm* (*Intern::formCreators[3])(const std::string& target) =
 };
 AForm* Intern::makeForm(const std::string &formName, const std::string &target)
 {
-    std::string formNames[3] = {"Shrubbery creation","Robotomy creation","Pardon creation"};
+    std::string formNames[3] = {"Shrubbery","Robotomy","Pardon"};
 
     for(int i = 0; i < 3 ; i++)
     {

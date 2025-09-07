@@ -4,7 +4,7 @@
 
 RobotomyRequestForm::RobotomyRequestForm() :AForm("Default",72,45) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("Robotomy creation", 72, 45), _target(target) {}
+RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("Robotomy", 72, 45), _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) :AForm(other), _target(other._target) {}
 

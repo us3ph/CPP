@@ -3,7 +3,7 @@
 
 PresidentialPardonForm::PresidentialPardonForm() : AForm("Default",25,5) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("Pardon creation", 25,5), _target(target) {}
+PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("Pardon", 25,5), _target(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other), _target(other._target) {}
 
