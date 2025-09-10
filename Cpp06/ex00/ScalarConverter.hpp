@@ -4,6 +4,7 @@
 #include "cmath"
 #include "iostream"
 #include "sstream"
+#include "climits"
 
 class ScalarConverter // static class 
 {
@@ -23,6 +24,11 @@ private:
     static char stringToChar(const std::string &literal);
     static float stringToFloat(const std::string &literal);
     static double stringToDouble(const std::string &literal);
+
+    static void convertFromChar(char c);
+    static void convertFromInt(int i);
+    static void convertFromFloat(float f);
+    static void convertFromDouble(double d);
 
     static void printChar(char value, bool impossible = false, bool Nondisplayable = false);
     static void printInt(int value, bool impossible = false);
