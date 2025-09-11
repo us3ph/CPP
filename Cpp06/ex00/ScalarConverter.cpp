@@ -32,13 +32,13 @@ bool ScalarConverter::isInt(const std::string &literal)
         std::cerr << "the type conversion is impossible" << std::endl;
         return false;
     }
-    return literal[literal.size() -1] != 'f' && literal.find('.') == std::string::npos && literal[0] != '\''; // check if int like this 42'
+    return literal[literal.size() -1] != 'f' && literal.find('.') == std::string::npos;
 }
 
 
 bool ScalarConverter::isChar(const std::string &literal)
 {
-    return literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'';
+    return literal.length() == 1 && !std::isdigit(literal[0]);
 }
 bool ScalarConverter::isFloat(const std::string &literal)
 {
@@ -62,15 +62,15 @@ int ScalarConverter::stringToInt(const std::string &literal)
 }
 char ScalarConverter::stringToChar(const std::string &literal)
 {
-    return literal[1];
+    return literal[0];
 }
 float ScalarConverter::stringToFloat(const std::string &literal)
 {
-    if(literal == "nanf") 
+    if(literal == "nanf")
         return 0.0f / 0.0f;
-    else if(literal == "+inff") 
+    else if(literal == "+inff")
         return 1.0f / 0.0f;
-    else if(literal == "-inff") 
+    else if(literal == "-inff")
         return -1.0f / 0.0f;
     float num = 0;
     std::stringstream ss(literal);
@@ -130,16 +130,16 @@ void ScalarConverter::printFloat(float value)
     {
         std::cout << "float: +inff" << std::endl;
         return;
-    } 
+    }
     else if(value < -3.40282e+38f)
     {
         std::cout << "float: -inff" << std::endl;
         return;
     }
-    if(value == static_cast<int>(value)) // check normal number if decimal part = 0 is true like 42.0 
+    if(value == static_cast<int>(value)) // check normal number if decimal part = 0 is true like 42.0
         std::cout << "float: " << value << ".0f" << std::endl;
     else
-        std::cout << "float: " << value << "f" << std::endl; 
+        std::cout << "float: " << value << "f" << std::endl;
 }
 void ScalarConverter::printDouble(double value)
 {
@@ -162,7 +162,7 @@ void ScalarConverter::printDouble(double value)
         std::cout << "double: " << value << ".0" << std::endl;
     else
         std::cout << "double: " << value <<  std::endl;
-    
+
 }
 
 void ScalarConverter::convertFromChar(char c)
@@ -193,7 +193,7 @@ void ScalarConverter::convertFromFloat(float f)
     else
         printChar(0,false,true);
 
-    
+
     if(f != f || f > 2147483647.0f || f < -2147483647.0f)
         printInt(0, true);
     else
@@ -221,26 +221,21 @@ void ScalarConverter::convert(const std::string& literal)
 {
     if(isChar(literal))
     {
-        std::cout << "---> 1\n";
         char c = stringToChar(literal);
-        // std::cout << c << std::endl;
         convertFromChar(c);
     }
     else if(isInt(literal))
     {
-        std::cout << "---> 2\n";
         int i = stringToInt(literal);
         convertFromInt(i);
     }
     else if(isFloat(literal))
     {
-        std::cout << "---> 3\n";
         float f = stringToFloat(literal);
         convertFromFloat(f);
     }
     else if(isDouble(literal))
     {
-        std::cout << "---> 4\n";
         double d = stringToDouble(literal);
         convertFromDouble(d);
     }

@@ -6,7 +6,7 @@
 #include "sstream"
 #include "climits"
 
-class ScalarConverter // static class 
+class ScalarConverter // static class
 {
 private:
     ScalarConverter();
