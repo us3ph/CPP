@@ -26,6 +26,12 @@ fclean: clean
 
 re: fclean all
 
+push: 
+	$(RM) $(NAME)
+	git add .
+	git commit -m "done"
+	git push
+
 .PHONY: clean fclean re all
 
 .SECONDARY:
