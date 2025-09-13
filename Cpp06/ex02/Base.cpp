@@ -1,7 +1,6 @@
 #include "Base.hpp"
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
+
+Base::~Base() {}
 
 Base * generate(void)
 {
@@ -19,43 +18,34 @@ void identify(Base* p)
         std::cout << "A" << std::endl;
     else if(dynamic_cast<B*>(p))
         std::cout << "B" << std::endl;
-    else if(dynamic_cast<B*>(p))
+    else if(dynamic_cast<C*>(p))
         std::cout << "C" << std::endl;
 }
 void identify(Base& p)
 {
     try
     {
-        dynamic_cast<A&>(p); // succeeds if object is type A otherwise throw exeption std::bad_cast
+        (void)dynamic_cast<A&>(p); // succeeds if object is type A otherwise throw exeption std::bad_cast
         std::cout << "A" << std::endl;
+        return;
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    catch(...) {} // Catch all exceptions don't print anything silent do nothing 
 
     try
     {
-        dynamic_cast<B&>(p);
+        (void)dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
-
+        return;
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    catch(...) {}
     
     try
     {
-        dynamic_cast<C&>(p);
-
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
+        (void)dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
+        return;
     }
-    
+    catch(...) {}  
 }
 
 // std::bad_cast is an exception type thrown when a dynamic_cast to a reference type fails at runtime. This typically occurs when attempting to cast a base class reference to a derived class reference
