@@ -1,12 +1,14 @@
 #ifndef WHATEVER_HPP
 #define WHATEVER_HPP
 
-template <typename T> T swap(T x, T y)
+#include "iostream"
+
+template <typename T> void swap(T &x, T &y)
 {
     T tmp;
     tmp = x;
     x = y;
-    x = tmp;
+    y = tmp;
 }
 
 template <typename T> T min(T x, T y)
