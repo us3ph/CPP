@@ -23,10 +23,6 @@ int main()
         Array<int> copiedArray(intArray);
         std::cout << "copied array size : " << copiedArray.size() << std::endl;
 
-        // std::cout << "testing const array\n";
-        // const Array<int> constArray(copiedArray);
-        // std::cout << "const array[0] " << constArray[0] << std::endl;
-
         std::cout << "testing deep copy\n";
         intArray[0] = 999;
         std::cout << "original array[0] " << intArray[0] << std::endl;
