@@ -17,13 +17,10 @@ public:
 
   Array(unsigned int n) : _size(n)
   {
-    if(n < 1)
+    if(n > 0)
+      _element = new T[n]();
+    else 
       _element = 0;
-    else {
-      _element = new T[n];
-      for (unsigned int i = 0; i < n; ++i)
-      _element[i] = 0;
-    }
   };
 
   Array(const Array &other) : _size(other._size)
