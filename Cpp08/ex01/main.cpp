@@ -21,7 +21,7 @@ int main()
         std::cerr << e.what() << '\n';
     }
 
-    std::cout << "add many numbers in one call\n";
+    std::cout << "test add many numbers in one call\n";
     try
     {
         Span sp(100);
@@ -33,9 +33,10 @@ int main()
         numbers.push_back(13);
         numbers.push_back(2);
         numbers.push_back(8);
-
+        
         sp.addNumbers(numbers);
-
+        std::cout << "shortest span :" << sp.shortestSpan() << std::endl;
+        std::cout << "longest span :" << sp.longestSpan() << std::endl;
 
     }
     catch(const std::exception& e)

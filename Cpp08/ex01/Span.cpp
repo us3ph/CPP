@@ -37,14 +37,14 @@ unsigned int Span::shortestSpan() const
 {
     if(numbers.size() < 2)
         throw std::runtime_error("cannot find span, need at least 2 numbers");
-    unsigned int minSpan = UINT_MAX; // store larget value
+    unsigned int minSpan = UINT_MAX;
     for(unsigned int i = 0; i < numbers.size(); i++)
     {
         for(unsigned int j = i + 1; j < numbers.size(); j++)
         {
             unsigned int currentSpan = std::abs(numbers[i] - numbers[j]);
             if(currentSpan < minSpan)
-                minSpan = currentSpan; // always track the smallets span
+                minSpan = currentSpan;
         }
     }
     return minSpan;
