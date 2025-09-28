@@ -5,15 +5,15 @@ int main()
     std::cout << "test basic case\n";
     try
     {
-        Span span(5);
-        span.addNunber(6);
-        span.addNunber(3);
-        span.addNunber(17);
-        span.addNunber(9);
-        span.addNunber(11);
+        Span sp(5);
+        sp.addNunber(6);
+        sp.addNunber(3);
+        sp.addNunber(17);
+        sp.addNunber(9);
+        sp.addNunber(11);
         std::cout << "added number : 6,3,17,9,11\n";
-        std::cout << "shortest span : " << span.shortestSpan() << std::endl;
-        std::cout << "longest span : " << span.longestSpan() << std::endl;
+        std::cout << "shortest span : " << sp.shortestSpan() << std::endl;
+        std::cout << "longest span : " << sp.longestSpan() << std::endl;
 
     }
     catch(const std::exception& e)
@@ -21,6 +21,28 @@ int main()
         std::cerr << e.what() << '\n';
     }
 
+    std::cout << "add many numbers in one call\n";
+    try
+    {
+        Span sp(100);
+        std::vector<int> numbers;
+        numbers.push_back(12);
+        numbers.push_back(4);
+        numbers.push_back(3);
+        numbers.push_back(6);
+        numbers.push_back(13);
+        numbers.push_back(2);
+        numbers.push_back(8);
+
+        sp.addNumbers(numbers);
+
+
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
     std::cout << "test capacity\n";
     try
     {

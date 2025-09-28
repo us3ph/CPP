@@ -21,6 +21,7 @@ public:
     Span& operator=(const Span &other);
     ~Span();
     void addNunber(int num);
+    void addNumbers(const std::vector<int> &numbersToAdd);
     unsigned int shortestSpan() const;
     unsigned int longestSpan() const;
 };

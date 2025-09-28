@@ -25,6 +25,14 @@ void Span::addNunber(int num)
     numbers.push_back(num);
 }
 
+void Span::addNumbers(const std::vector<int> &numbersToAdd)
+{
+    if(numbers.size() + numbersToAdd.size() > maxSize)
+        throw std::runtime_error("not enough space to add all numbers");
+    for(unsigned int i = 0; i < numbersToAdd.size(); i++)
+        numbers.push_back(numbersToAdd[i]);
+}
+
 unsigned int Span::shortestSpan() const
 {
     if(numbers.size() < 2)
