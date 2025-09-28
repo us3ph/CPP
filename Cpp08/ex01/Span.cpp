@@ -1,8 +1,11 @@
 #include "Span.hpp"
 
-Span::Span() {}
+Span::Span() : maxSize(0) {}
+
 Span::Span(unsigned int n) : maxSize(n) {}
+
 Span::Span(const Span &other) : numbers(other.numbers), maxSize(other.maxSize) {}
+
 Span& Span::operator=(const Span &other)
 {
     if(this != &other)
@@ -12,14 +15,17 @@ Span& Span::operator=(const Span &other)
     }
     return *this;
 }
+
 Span::~Span() {}
+
 void Span::addNunber(int num)
 {
     if(numbers.size() >= maxSize)
         throw std::runtime_error("span is full");
     numbers.push_back(num);
 }
-unsigned int Span::shortesSpan() const
+
+unsigned int Span::shortestSpan() const
 {
     if(numbers.size() < 2)
         throw std::runtime_error("cannot find span, need at least 2 numbers");
@@ -33,10 +39,9 @@ unsigned int Span::shortesSpan() const
                 minSpan = currentSpan; // always track the smallets span
         }
     }
-
-
-
+    return minSpan;
 }
+
 unsigned int Span::longestSpan() const
 {
     if(numbers.size() < 2)

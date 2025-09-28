@@ -6,6 +6,7 @@
 #include <climits>
 #include <cstdlib>
 #include <algorithm>
+#include <iostream>
 
 class Span
 {
@@ -20,7 +21,7 @@ public:
     Span& operator=(const Span &other);
     ~Span();
     void addNunber(int num);
-    unsigned int shortesSpan() const;
+    unsigned int shortestSpan() const;
     unsigned int longestSpan() const;
 };
 
