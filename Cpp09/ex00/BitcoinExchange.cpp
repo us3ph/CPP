@@ -45,7 +45,7 @@ void BitcoinExchange::loadDatabase(const std::string& filename)
 bool BitcoinExchange::isValidDate(const std::string& date)
 {
   if(date.length() != 10 || date[4] != '-' || date[7] != '-')
-  return false;
+    return false;
   int year, month, day;
   std::string year_str = date.substr(0, 4);
   std::string month_str = date.substr(5, 2);
@@ -54,13 +54,25 @@ bool BitcoinExchange::isValidDate(const std::string& date)
   std::stringstream ss_year(year_str);
   std::stringstream ss_month(month_str);
   std::stringstream ss_day(day_str);
-  ss_year >> year;
-  ss_month >> month;
-  ss_day >> day;
-  if(!ss_year >> year || !ss_month >> month || !ss_day >> day)
+  if (!(ss_year >> year) || !(ss_month >> month) || !(ss_day >> day))
     return false;
-  if (year < 2009 || year > 2022 || month < 1 || month > 12 || day < 1 || day > 31)
-  return false;
+  if (year < 2009 || year > 2022 || month < 1 || month > 12 || day < 1)
+    return false;
+
+  // determine max days for the given month
+  int maxDay;
+  if (month == 2)
+  {
+    bool leapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    maxDay = leapYear ? 29 : 28;
+  }
+  else if (month == 4 || month == 6 || month == 9 || month == 11)
+    maxDay = 30;
+  else
+    maxDay = 31;
+
+  if (day > maxDay)
+    return false;
   return true;
 }
 
@@ -70,7 +82,7 @@ float BitcoinExchange::getExchangeRate(const std::string& date)
   if(it != _database.end() && it->first == date)
     return it->second;
   if(it == _database.begin())
-    return 0.0f;
+    return -1.0f;
   --it;
   return it->second;
 }
@@ -131,6 +143,11 @@ void BitcoinExchange::processInput(const std::string &filename)
         continue;
       }
       float rate = getExchangeRate(date);
+      if(rate == -1.0f)
+      {
+        std::cerr << "Error: no exchange rate available " << date << std::endl;
+        continue;
+      }
       std::cout << date << " => " << value << " = " << value * rate << std::endl;
     }
     file.close();
